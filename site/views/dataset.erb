@@ -1,0 +1,110 @@
+<div class="jumbotron">
+  <div class="container">
+    <h1><%= @dataset["name"] %></h1>
+    <p><%= @dataset["description"] %></p>
+    <p><a href="<%= dataset_link( params[:id] ) %>" class="btn btn-primary btn-lg" role="button">Get The Data &raquo;</a></p>
+  </div>
+</div>
+
+
+<div class="container">
+
+	<div class="row">
+		<div class="col-md-4">
+			<table class="table table-condensed">
+				<tbody>
+					<tr>
+						<td><strong>Licence</strong></td>
+						<td><a href="<%= @dataset["metadata"]["custom_fields"]["Additional Licence Detail"]["Licence URL"] %>">
+							<%= @dataset["metadata"]["custom_fields"]["Additional Licence Detail"]["Additional Licence Information"] %></a></td>
+					</tr>
+					<tr>
+						<td><strong>Source</strong></td>
+						<td><a href="<%= @dataset["attributionLink"] %>">
+							<%= @dataset["attribution"] %></a></td>
+					</tr>
+					<tr>
+						<td><strong>Created</strong></td>
+						<td><%= Time.at( @dataset["createdAt"] ) %></td>
+					</tr>
+					<tr>
+						<td><strong>Modified</strong></td>
+						<td><%= Time.at( @dataset["rowsUpdatedAt"] ) %></td>
+					</tr>
+					<tr>
+						<td><strong>Category</strong></td>
+						<td><%= @dataset["category"] %></td>
+					</tr>
+					<tr>
+						<td><strong>Size</strong></td>
+						<td><%= @size %> rows</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-md-8">
+		
+			<div class="row">
+	    		<p><%= @dataset["description"] %></p>
+			</div>
+			
+			<div class="row">    		
+				<h2>Get The Data</h2>
+	
+				<p>
+				Use the Socrata dataset to <a href="<%= dataset_link( params[:id] ) %>">explore, edit and visualise</a> the data, or download in a number of standard 
+				formats.
+				</p>
+				
+				<p>
+				<a href="<%= dataset_link( params[:id] ) %>" class="btn btn-primary" role="button">Explore Now</a>
+				<a href="<%= download_link( params[:id], "csv" ) %>" class="btn btn-default" role="button">CSV <span class="glyphicon glyphicon-download"></span></a>
+				<a href="<%= download_link( params[:id], "json" ) %>" class="btn btn-default" role="button">JSON <span class="glyphicon glyphicon-download"></a>
+				<a href="<%= download_link( params[:id], "xls" ) %>" class="btn btn-default" role="button">XLS <span class="glyphicon glyphicon-download"></a>
+				<a href="<%= download_link( params[:id], "xml" ) %>" class="btn btn-default" role="button">XML <span class="glyphicon glyphicon-download"></a>
+				</p>			
+			</div>
+			
+			<div class="row">
+				<h2>API Endpoint</h2>
+	
+				<p>
+				For details on how to query the dataset using the Socrata API read the <a href="http://dev.socrata.com/docs/endpoints.html">API documentation</a>
+				</p>
+	
+				<p>The API endpoint for this dataset is:</p>
+							
+				<code>
+				<%= dataset_endpoint(params[:id]) %>
+				</code>
+			</div>
+							
+			<div class="row">		
+				<h2>Schema Documentation</h2>
+	
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th></th>
+							<th>Name</th>
+							<th>Type</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @dataset["columns"].each do |column| %>
+							<tr>
+								<td><%= column["position"] %></td>
+								<td><%= column["fieldName"] %></td>
+								<td><%= column["dataTypeName"] %></td>			
+								<td><%= column["description"] %></td>											
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
+			
+		</div>	
+	</div>
+	
+</div>
