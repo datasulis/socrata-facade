@@ -1,8 +1,16 @@
+<div class="jumbotron">
+  <div class="container">
+	<h1><%= ENV["SOCRATA_CATALOG_NAME"] %> Browser</h1>
+    <p>An alternate way to browse and compare the datasets in the <%= ENV["SOCRATA_CATALOG_NAME"] %> data store</p>
+  </div>
+</div>
+
 <div class="container">
+	<div class="row">
+		<h3>Recently Updated Datasets</h3>
+		<p>The five most recently updated datasets on the BathHacked store. View a list of <a href="/datasets">all datasets</a></p>
+		<%= erb :dataset_table %>
 
-	<div class="starter-template">
-		<h1>Socrata Facade</h1>
-	    <p class="lead">Putting a different face on a Socrata store</p>
 	</div>
-
+	
 </div><!-- /.container -->
