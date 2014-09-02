@@ -8,7 +8,8 @@ rackup
 Then add a `.env` file containing a line like the following:
 
 ```
-SOCRATA_DOMAIN=bath.azure-westeurope-prod.socrata.com
+SOCRATA_CATALOG=data.bathhacked.org
+SOCRATA_CATALOG_NAME=BathHacked
 ```
 
 Then go to a dataset page using the dataset id from your Socrata instance:

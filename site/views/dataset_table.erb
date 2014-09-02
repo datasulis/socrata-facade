@@ -1,0 +1,18 @@
+<table class="table">
+	<thead>
+		<tr>
+			<th>Dataset</th>
+			<th>Description</th>
+			<th>Category</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @datasets.each do |dataset| %>
+			<tr>
+				<td><a href="/datasets/<%= dataset["identifier"] %>"><%= dataset["title"] %></a></td>									
+				<td><%= dataset["description"] %></td>
+				<td><%= dataset["theme"] %></td>		
+			</tr>
+		<% end %>
+	</tbody>
+</table>
